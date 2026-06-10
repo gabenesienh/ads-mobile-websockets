@@ -3,8 +3,8 @@ const http = require('http');
 const { Server } = require('socket.io');
 const cors = require('cors');
 
-const pollRoutes = require('./routes/polls');
-const { registerSocketHandlers } = require('./sockets/pollSocket');
+const pollRoutes = require('./polls');
+const { registerSocketHandlers } = require('./pollSocket');
 
 // ─── App & HTTP server ────────────────────────────────────────────────────────
 const app = express();

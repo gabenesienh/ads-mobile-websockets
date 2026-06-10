@@ -1,5 +1,5 @@
 const { v4: uuidv4 } = require('uuid');
-const { polls } = require('../store');
+const { polls } = require('./store');
 
 // ─── Helpers ─────────────────────────────────────────────────────────────────
 

@@ -1,5 +1,5 @@
-const { polls } = require('../store');
-const { serializePoll } = require('../controllers/pollController');
+const { polls } = require('./store');
+const { serializePoll } = require('./pollController');
 
 /**
  * Registra todos os eventos Socket.io.

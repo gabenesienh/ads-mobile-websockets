@@ -7,7 +7,7 @@ const {
   closePoll,
   reopenPoll,
   vote,
-} = require('../controllers/pollController');
+} = require('./pollController');
 
 const router = Router();
 
