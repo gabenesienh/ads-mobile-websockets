@@ -1,0 +1,104 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Resultados — Votação PWA</title>
+    <link rel="stylesheet" href="../frontend/css/style.css" />
+    <link rel="stylesheet" href="../frontend/css/Results.css" />
+    <link rel="manifest" href="../../pwa/manifest.json" />
+    <meta name="theme-color" content="#3D5A80" />
+  </head>
+  <body class="page">
+    <header class="site-header">
+      <div class="container">
+        <a href="index.html" class="logo">📊 Votação</a>
+        <nav>
+          <a href="index.html">Início</a>
+          <a href="results.html" class="active">Resultados</a>
+        </nav>
+      </div>
+    </header>
+
+    <main>
+      <div class="container">
+        <div class="card">
+          <h1 class="page-title">Resultados</h1>
+          <p class="page-subtitle">Acompanhe os votos em tempo real.</p>
+
+          <div class="form-group form-group-no-margin">
+            <label for="poll-select">Selecionar votação</label>
+            <div class="poll-selector">
+              <select id="poll-select">
+                <option value="">— escolha uma votação —</option>
+              </select>
+              <button class="btn btn-outline" id="btn-load">Carregar</button>
+            </div>
+          </div>
+        </div>
+
+        <div id="state-empty" class="card card-state">
+          <div class="empty-state">
+            <div class="empty-icon">📊</div>
+            <p>Selecione uma votação acima para ver os resultados.</p>
+          </div>
+        </div>
+
+        <div id="state-loading" class="card card-state card-state--hidden">
+          <div class="loading-state">
+            <div class="spinner"></div>
+            <span>Buscando resultados…</span>
+          </div>
+        </div>
+
+        <div id="state-results" class="results-section results-section--hidden">
+          <div class="card card-state">
+            <div class="result-poll-header">
+              <div class="result-poll-info">
+                <h2 class="result-title" id="result-title">—</h2>
+                <p class="result-desc" id="result-desc"></p>
+              </div>
+              <div class="result-poll-meta">
+                <span id="live-badge" class="live-badge">
+                  <span class="live-dot"></span>ao vivo
+                </span>
+                <span id="result-status" class="badge"></span>
+              </div>
+            </div>
+          </div>
+
+          <div class="card card-state">
+            <div id="results-chart"></div>
+            <div class="total-votes">
+              <span>Total de votos</span>
+              <span id="total-count" class="total-count-value">0</span>
+            </div>
+          </div>
+
+          <div class="results-actions">
+            <a id="btn-go-vote" href="#" class="btn btn-primary"
+              >Votar nesta votação</a
+            >
+            <button id="btn-close-poll" class="btn btn-danger btn-close-hidden">
+              Encerrar votação
+            </button>
+            <button id="btn-export" class="btn btn-outline">
+              Exportar CSV
+            </button>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <footer class="site-footer">
+      <div class="container">Votação PWA — tempo real com WebSocket</div>
+    </footer>
+
+    <div id="toast-container"></div>
+
+    <script src="../js/api.js"></script>
+    <script src="../js/socket.js"></script>
+    <script src="../js/toast.js"></script>
+    <script src="../js/results.js"></script>
+  </body>
+</html>

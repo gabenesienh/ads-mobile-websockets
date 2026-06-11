@@ -1,0 +1,133 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Votar — Votação PWA</title>
+    <meta name="description" content="Registre seu voto." />
+    <link rel="stylesheet" href="../frontend/css/style.css" />
+    <link rel="stylesheet" href="../frontend/css/vote.css" />
+    <link rel="manifest" href="../../pwa/manifest.json" />
+    <meta name="theme-color" content="#3D5A80" />
+  </head>
+  <body class="page">
+    <header class="site-header">
+      <div class="container">
+        <a href="index.html" class="logo">📊 Votação</a>
+        <nav>
+          <a href="index.html">Início</a>
+          <a href="results.html">Resultados</a>
+        </nav>
+      </div>
+    </header>
+
+    <main>
+      <div class="container">
+        <div id="state-loading" class="card">
+          <div class="loading-state">
+            <div class="spinner"></div>
+            <span>Carregando votação…</span>
+          </div>
+        </div>
+
+        <div id="state-error" class="card" style="display: none">
+          <div class="empty-state">
+            <div style="font-size: 2rem">🔍</div>
+            <p id="error-msg">Votação não encontrada.</p>
+            <a
+              href="index.html"
+              class="btn btn-primary"
+              style="margin-top: 20px"
+              >Voltar ao início</a
+            >
+          </div>
+        </div>
+
+        <div id="state-poll" style="display: none">
+          <div class="card">
+            <div
+              style="
+                display: flex;
+                align-items: flex-start;
+                justify-content: space-between;
+                gap: 12px;
+                flex-wrap: wrap;
+              "
+            >
+              <div>
+                <h1 class="page-title" id="poll-title">—</h1>
+                <p
+                  class="page-subtitle"
+                  id="poll-desc"
+                  style="margin-bottom: 0"
+                ></p>
+                <div id="countdown"></div>
+              </div>
+              <span id="poll-status" class="badge"></span>
+            </div>
+          </div>
+
+          <div class="card" style="margin-top: 16px">
+            <label style="margin-bottom: 8px">Link desta votação</label>
+            <div class="share-row">
+              <input type="text" id="share-link" readonly />
+              <button class="btn btn-outline" id="btn-copy">Copiar</button>
+            </div>
+          </div>
+
+          <div class="card" style="margin-top: 16px" id="vote-card">
+            <div id="voted-notice" class="voted-notice" style="display: none">
+              ✅ Você já votou nesta votação.
+            </div>
+            <div id="closed-notice" class="closed-notice" style="display: none">
+              🔒 Esta votação está encerrada.
+            </div>
+
+            <form id="form-vote" novalidate>
+              <p
+                style="
+                  font-size: 0.85rem;
+                  color: var(--text-muted);
+                  margin-bottom: 14px;
+                "
+                id="vote-instruction"
+              >
+                Selecione uma opção e confirme seu voto.
+              </p>
+
+              <div class="vote-options" id="options-container"></div>
+
+              <div style="margin-top: 22px">
+                <button
+                  type="submit"
+                  class="btn btn-primary btn-block"
+                  id="btn-vote"
+                >
+                  Confirmar voto
+                </button>
+                <a
+                  href="results.html"
+                  id="link-results"
+                  class="btn btn-outline btn-block"
+                  style="margin-top: 10px"
+                  >Ver resultados</a
+                >
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <footer class="site-footer">
+      <div class="container">Votação PWA — tempo real com WebSocket</div>
+    </footer>
+
+    <div id="toast-container"></div>
+
+    <script src="../js/api.js"></script>
+    <script src="../js/socket.js"></script>
+    <script src="../js/toast.js"></script>
+    <script src="../js/vote.js"></script>
+  </body>
+</html>

@@ -1,0 +1,170 @@
+.poll-selector {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+}
+
+.poll-selector select {
+  flex: 1;
+}
+
+.form-group-no-margin {
+  margin-bottom: 0;
+}
+
+.card-state {
+  margin-top: 16px;
+}
+
+.card-state--hidden {
+  display: none;
+}
+
+.results-section {
+  display: block;
+}
+
+.results-section--hidden {
+  display: none;
+}
+
+.result-poll-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.result-poll-info {
+  flex: 1;
+  min-width: 0;
+}
+
+.result-title {
+  font-size: 1.1rem;
+  font-weight: 700;
+}
+
+.result-desc {
+  font-size: 0.85rem;
+  color: var(--text-muted);
+  margin-top: 2px;
+}
+
+.result-poll-meta {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-shrink: 0;
+}
+
+.live-badge {
+  font-size: 0.8rem;
+  color: var(--text-muted);
+}
+
+.live-dot {
+  display: inline-block;
+  width: 8px;
+  height: 8px;
+  background: var(--success);
+  border-radius: 50%;
+  margin-right: 6px;
+  animation: pulse 1.5s ease infinite;
+}
+
+@keyframes pulse {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.3;
+  }
+}
+
+.result-item {
+  margin-bottom: 18px;
+}
+
+.result-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  margin-bottom: 6px;
+}
+
+.result-label {
+  font-size: 0.9rem;
+  font-weight: 500;
+}
+
+.result-meta {
+  font-size: 0.8rem;
+  color: var(--text-muted);
+  font-variant-numeric: tabular-nums;
+}
+
+.bar-track {
+  height: 10px;
+  background: var(--border);
+  border-radius: 6px;
+  overflow: hidden;
+}
+
+.bar-fill {
+  height: 100%;
+  background: var(--accent);
+  border-radius: 6px;
+  transition: width 0.5s ease;
+  width: 0%;
+}
+
+.bar-fill.winner {
+  background: var(--success);
+}
+
+.total-votes {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.8rem;
+  color: var(--text-muted);
+  margin-top: 20px;
+  padding-top: 16px;
+  border-top: 1px solid var(--border);
+}
+
+.total-count-value {
+  font-weight: 600;
+}
+
+.results-actions {
+  display: flex;
+  gap: 10px;
+  margin-top: 16px;
+  flex-wrap: wrap;
+}
+
+.btn-close-hidden {
+  display: none;
+}
+
+.empty-icon {
+  font-size: 2rem;
+}
+
+@media (max-width: 480px) {
+  .result-poll-header {
+    flex-direction: column;
+  }
+
+  .results-actions {
+    flex-direction: column;
+  }
+
+  .results-actions .btn {
+    width: 100%;
+    justify-content: center;
+  }
+}

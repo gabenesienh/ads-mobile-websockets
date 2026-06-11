@@ -1,0 +1,160 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Votação PWA</title>
+    <meta
+      name="description"
+      content="Crie e gerencie votações em tempo real."
+    />
+    <link rel="stylesheet" href="../frontend/css/style.css" />
+    <link rel="stylesheet" href="../frontend/css/index.css" />
+    <link rel="manifest" href="../../pwa/manifest.json" />
+    <meta name="theme-color" content="#3D5A80" />
+    <link rel="apple-touch-icon" href="../../pwa/icons/icon-192.png" />
+  </head>
+  <body class="page">
+    <header class="site-header">
+      <div class="container">
+        <a href="index.html" class="logo">📊 Votação</a>
+        <nav>
+          <a href="index.html" class="active">Início</a>
+          <a href="results.html">Resultados</a>
+        </nav>
+      </div>
+    </header>
+
+    <main>
+      <div class="container">
+        <div class="card">
+          <h1 class="page-title">Nova votação</h1>
+          <p class="page-subtitle">
+            Preencha o formulário e compartilhe o link com os participantes.
+          </p>
+
+          <form id="form-create" novalidate>
+            <div class="form-group">
+              <label for="poll-title">Título da votação *</label>
+              <input
+                type="text"
+                id="poll-title"
+                placeholder="Ex.: Qual linguagem usar no projeto?"
+                maxlength="120"
+                required
+              />
+            </div>
+
+            <div class="form-group">
+              <label for="poll-desc">
+                Descrição <span class="label-optional">(opcional)</span>
+              </label>
+              <textarea
+                id="poll-desc"
+                rows="2"
+                placeholder="Contexto adicional para os votantes…"
+                maxlength="300"
+              ></textarea>
+            </div>
+
+            <div class="form-group">
+              <label>Opções de voto *</label>
+              <div id="options-list">
+                <div class="option-row form-row">
+                  <div class="form-group">
+                    <input
+                      type="text"
+                      placeholder="Opção 1"
+                      maxlength="80"
+                      required
+                    />
+                  </div>
+                  <button
+                    type="button"
+                    class="btn btn-outline remove-option"
+                    title="Remover"
+                  >
+                    ✕
+                  </button>
+                </div>
+                <div class="option-row form-row">
+                  <div class="form-group">
+                    <input
+                      type="text"
+                      placeholder="Opção 2"
+                      maxlength="80"
+                      required
+                    />
+                  </div>
+                  <button
+                    type="button"
+                    class="btn btn-outline remove-option"
+                    title="Remover"
+                  >
+                    ✕
+                  </button>
+                </div>
+              </div>
+              <button
+                type="button"
+                id="add-option"
+                class="btn btn-outline btn-add-option"
+              >
+                + Adicionar opção
+              </button>
+            </div>
+
+            <div class="form-row">
+              <div class="form-group">
+                <label for="poll-limit">Máx. votos por pessoa</label>
+                <select id="poll-limit">
+                  <option value="1">1 voto</option>
+                  <option value="2">2 votos</option>
+                  <option value="3">3 votos</option>
+                  <option value="0">Ilimitado</option>
+                </select>
+              </div>
+              <div class="form-group">
+                <label for="poll-expires">Encerramento</label>
+                <input type="datetime-local" id="poll-expires" />
+              </div>
+            </div>
+
+            <button
+              type="submit"
+              class="btn btn-primary btn-block"
+              id="btn-create"
+            >
+              Criar votação
+            </button>
+          </form>
+        </div>
+
+        <div class="card card-polls-list">
+          <div class="polls-list-header">
+            <h2 class="polls-list-title">Votações criadas</h2>
+            <button id="btn-refresh" class="btn btn-outline btn-refresh">
+              ↺ Atualizar
+            </button>
+          </div>
+          <div id="polls-list">
+            <div class="loading-state">
+              <div class="spinner"></div>
+              <span>Carregando…</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <footer class="site-footer">
+      <div class="container">Votação PWA — tempo real com WebSocket</div>
+    </footer>
+
+    <div id="toast-container"></div>
+
+    <script src="../js/api.js"></script>
+    <script src="../js/toast.js"></script>
+    <script src="../js/index.js"></script>
+  </body>
+</html>
