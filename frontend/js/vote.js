@@ -69,7 +69,7 @@ function renderOptions(poll) {
     ? `Selecione até ${poll.voteLimit} opções e confirme seu voto.`
     : "Selecione uma opção e confirme seu voto.";
 
-  poll.options.forEach((opt) => {
+  poll.data.options.forEach((opt) => {
     const label = document.createElement("label");
     label.className = "vote-option";
     label.innerHTML = `
