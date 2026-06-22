@@ -122,7 +122,7 @@ async function loadPolls() {
   try {
     const polls = await getPolls();
 
-    if (!polls || polls.length === 0) {
+    if (!polls || polls.data.length === 0) {
       container.innerHTML = `
         <div class="empty-state">
           <div style="font-size:1.8rem">🗳️</div>
@@ -132,7 +132,7 @@ async function loadPolls() {
     }
 
     container.innerHTML = "";
-    polls.forEach((poll) => container.appendChild(renderPollRow(poll)));
+    polls.data.forEach((poll) => container.appendChild(renderPollRow(poll)));
   } catch (err) {
     container.innerHTML = `
       <div class="empty-state">
