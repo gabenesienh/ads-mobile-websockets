@@ -1,6 +1,9 @@
 import { createServer } from 'http';
 import { Server } from 'socket.io';
 
+const SERVER_HOST = 'localhost';
+const SERVER_PORT = 3000;
+const SERVER_URL = `${SERVER_HOST}:${SERVER_PORT}`;
 const WEBSOCKET_HOST = '0.0.0.0';
 const WEBSOCKET_PORT = 8080;
 const WEBSOCKET_URL = `${WEBSOCKET_HOST}:${WEBSOCKET_PORT}`;
@@ -23,6 +26,26 @@ io.on('connection', (socket) => {
   socket.on('disconnect', () => {
     console.log('Um usuário se desconectou do websocket');
   });
+
+  socket.on('votoEnviado', async ({ pollId, opcaoId }) => {
+    let res = await fetch(`http://${SERVER_URL}/api/votar`, {
+      method: 'POST',
+      body: JSON.stringify({ pollId, opcaoId }),
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    });
+
+    const data = await res.json();
+
+    if (res.status == 200) {
+      io.emit('votoSucesso', {
+        opcaoId: data.opcaoId,
+        qtdVotos: data.qtdVotos
+      });
+      console.log(`Voto cadastrado para a opção ${opcaoId} da poll ${pollId}`);
+    }
+  })
 });
 
 ioServer.listen(WEBSOCKET_PORT, WEBSOCKET_HOST, () => {

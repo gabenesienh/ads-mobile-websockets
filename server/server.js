@@ -25,10 +25,10 @@ server.get('/api/polls', (req, res) => {
 server.get('/api/polls/:id', (req, res) => {
   const pollEncontrada = polls[req.params.id];
 
-  if (!pollEncontrada) {
+  if (pollEncontrada === undefined) {
     return res
       .status(404)
-      .json({ error: 'Esta poll não existe.' });
+      .json({ error: 'A poll não existe.' });
   }
 
   return res
@@ -41,13 +41,13 @@ server.post('/api/polls', (req, res) => {
   const { titulo, opcoes } = req.body;
 
   // Verificar se os campos foram informados
-  if (!titulo) {
+  if (titulo === undefined) {
     return res
       .status(400)
       .json({ error: 'A poll não possui um título.' });
   }
 
-  if (!opcoes) {
+  if (opcoes === undefined) {
     return res
       .status(400)
       .json({ error: 'A poll precisa de pelo menos duas opções.' });
@@ -83,6 +83,47 @@ server.post('/api/polls', (req, res) => {
   return res
     .status(201)
     .json({ pollId: newPollId });
+});
+
+// Registrar voto
+server.post('/api/votar', (req, res) => {
+  const { pollId, opcaoId } = req.body;
+
+  // Verificar se os campos foram informados
+  if (pollId === undefined) {
+    return res
+      .status(400)
+      .json({ error: 'O voto precisa incluir o ID da poll.' });
+  }
+
+  if (opcaoId === undefined) {
+    return res
+      .status(400)
+      .json({ error: 'O voto precisa incluir o ID da opção.' });
+  }
+
+  // Validar campos
+  if (polls[pollId] === undefined) {
+    return res
+      .status(404)
+      .json({ error: 'Nenhuma poll existe com este ID.' });
+  }
+
+  if (polls[pollId].opcoes[opcaoId] === undefined) {
+    return res
+      .status(404)
+      .json({ error: 'Esta opção não existe para a poll informada.' });
+  }
+
+  // Atualizar a contagem de votos
+  polls[pollId].opcoes[opcaoId].votos++
+
+  return res
+    .status(200)
+    .json({
+      opcaoId: opcaoId,
+      qtdVotos: polls[pollId].opcoes[opcaoId].votos,
+    });
 });
 
 // Iniciar servidor

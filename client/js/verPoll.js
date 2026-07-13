@@ -28,20 +28,44 @@ document.addEventListener('DOMContentLoaded', async () => {
   // Poll não encontrada
   if (res.status === 404) {
     //TODO: lidar com erro
+    return;
   }
 
   // Preencher dados da poll na página
   divPollTitulo.innerHTML = data.titulo;
 
   for (let i = 0; i < data.opcoes.length; i++) {
-    divPollOpcoes.innerHTML +=
-    `
+    const novaOpcao = document.createElement('div');
+
+    // Sim, isso não é nem um pouco seguro, mas eu já virei a noite fazendo essa
+    // porcaria funcionar :^)))))))))
+    divPollOpcoes.insertAdjacentHTML('beforeend', `
       <div>
-        <label for="poll-opcao-${i}">
+        <label for="poll-votar-${i}">
           ${data.opcoes[i].desc}
         </label>
-        <button id="poll-opcao-${i}">Votar</button>
+        <button id="poll-votar-${i}">Votar</button>
+        <div id="poll-votos-${i}">
+          ${data.opcoes[i].votos}
+        </div>
       </div>
-    `;
+    `)
+
+    // Registrar voto ao clicar o botão
+    const btnVotar = document.getElementById(`poll-votar-${i}`);
+
+    btnVotar.addEventListener('click', () => {
+      socket.emit('votoEnviado', {
+        pollId: pollId,
+        opcaoId: i
+      });
+    });
   }
+});
+
+// Atualizar na tela o número de votos
+socket.on('votoSucesso', ({ opcaoId, qtdVotos }) => {
+  const opcaoVotada = document.getElementById(`poll-votos-${opcaoId}`);
+
+  opcaoVotada.textContent = qtdVotos;
 });
