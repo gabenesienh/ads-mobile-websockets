@@ -14,11 +14,26 @@ let polls = {};
 
 /* -- Rotas -- */
 
-// Ver polls existentes
+// Retornar polls existentes
 server.get('/api/polls', (req, res) => {
   return res
     .status(200)
     .json(polls);
+});
+
+// Retornar uma poll específica
+server.get('/api/polls/:id', (req, res) => {
+  const pollEncontrada = polls[req.params.id];
+
+  if (!pollEncontrada) {
+    return res
+      .status(404)
+      .json({ 'error': 'Esta poll não existe.' });
+  }
+
+  return res
+    .status(200)
+    .json(pollEncontrada);
 });
 
 // Criar nova poll
@@ -45,7 +60,7 @@ server.post('/api/polls', (req, res) => {
   };
 
   return res
-    .status(200)
+    .status(201)
     .json({});
 });
 
