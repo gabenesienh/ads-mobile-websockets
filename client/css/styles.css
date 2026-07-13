@@ -1,31 +1,114 @@
+@import url('https://fonts.googleapis.com/css2?family=Agbalumo&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Agbalumo&family=Akatab:wght@400;500;600;700;800;900&display=swap');
+
 body {
   align-items: center;
-  background-color: #ffffee;
+  background-color: #efefdd;
+  color: #111;
   display: flex;
   flex-direction: column;
+  font-family: 'Akatab';
+  font-size: 18px;
   margin: 0;
   min-width: 100vw;
 }
 
+button {
+  background-color: #eecdab;
+  border: 2px solid #bb8956;
+  border-radius: 12px;
+  box-shadow: 0px 3px 4px #bb8956;
+  font-size: 15px;
+  font-weight: bold;
+  min-height: 44px;
+  min-width: 44px;
+  padding: 0.5em;
+}
+
+h1 {
+  font-family: "Agbalumo";
+}
+
 main {
   align-items: center;
+  background-color: #ffe;
   display: flex;
   flex-direction: column;
+  max-width: 1200px;
   min-height: 100vh;
   padding: 12px;
   width: 100%;
 }
 
-.nav-topo-container {
-  width: 100%;
-  margin: 6px 12px;
+.poll-opcao-container {
+  background-color: #9fcfff;
+  border-radius: 6px;
+  padding: 16px;
 }
 
-.nav-topo-logo {
+#nav-topo-container {
+  width: 100%;
+  margin: 6px 12px;}
+
+#nav-topo-logo {
   height: 100%;
   min-height: 48px;
   max-height: 80px;
 }
+
+#poll-botoes-add-rm {
+  display: flex;
+}
+
+#poll-botoes-add-rm button {
+  flex: 1;
+}
+
+#poll-opcoes-container {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 1em;
+  row-gap: 4px;
+}
+
+#poll-titulo {
+  background: 0;
+  border: 0;
+  border-bottom: 3px dashed #fff;
+  color: #fff;
+  field-sizing: content;
+  font-family: "Agbalumo";
+  font-size: 28px;
+  font-weight: normal;
+  max-width: 100%;
+  min-width: 50px;
+  resize: none;
+  width: fit-content;
+}
+
+#poll-titulo-container {
+  align-items: center;
+  background-color: #f54;
+  border: 6px dotted #ffe;
+  border-top: 0;
+  border-bottom: 0;
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 2.5em;
+  max-width: 80%;
+  padding: 10px 16px;
+}
+
+#poll-titulo-container * {
+  margin: 5px;
+  text-align: center;
+}
+
+#poll-titulo-label {
+  font-weight: bold;
+}
+
+/* -- Componentes -- */
 
 #_NavTopo {
   background-color: #eecdab;
@@ -33,7 +116,11 @@ main {
   max-height: 80px;
   min-height: 80px;
   min-width: 100%;
+  position: sticky;
+  top: 0;
 }
+
+/* -- Media queries -- */
 
 /* sm */
 @media (min-width: 576px) {
@@ -48,9 +135,9 @@ main {
     width: 80%;
   }
 
-  .nav-topo-container {
+  #nav-topo-container, main {
     margin-left: 12.5%;
-    margin-right: 12.%;
+    margin-right: 12.5%;
   }
 }
 
@@ -60,7 +147,7 @@ main {
     width: 70%;
   }
 
-  .nav-topo-container {
+  #nav-topo-container, main {
     margin-left: 20%;
     margin-right: 20%;
   }

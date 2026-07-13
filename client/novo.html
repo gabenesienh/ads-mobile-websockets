@@ -11,33 +11,15 @@
   <main>
     <h1>Nova enquete</h1>
 
-    <div>
-      <label for="poll-titulo">Título:</label>
-      <input type="text" id="poll-titulo" autocomplete="off" />
+    <div id="poll-titulo-container">
+      <textarea id="poll-titulo" autocomplete="off" spellcheck="off" maxlength="128">Título</textarea>
+      <label for="poll-titulo">Sobre o que será sua enquete?</label>
     </div>
-    <div>
-      <label for="poll-opcao-1">Opção 1:</label>
-      <input type="text" id="poll-opcao-1" class="poll-opcao" autocomplete="off" />
-    </div>
-    <div>
-      <label for="poll-opcao-2">Opção 2:</label>
-      <input type="text" id="poll-opcao-2" class="poll-opcao" autocomplete="off" />
-    </div>
-    <div>
-      <label for="poll-opcao-3">Opção 3:</label>
-      <input type="text" id="poll-opcao-3" class="poll-opcao" autocomplete="off" />
-    </div>
-    <div>
-      <label for="poll-opcao-4">Opção 4:</label>
-      <input type="text" id="poll-opcao-4" class="poll-opcao" autocomplete="off" />
-    </div>
-    <div>
-      <label for="poll-opcao-5">Opção 5:</label>
-      <input type="text" id="poll-opcao-5" class="poll-opcao" autocomplete="off" />
-    </div>
-    <div>
-      <label for="poll-opcao-6">Opção 6:</label>
-      <input type="text" id="poll-opcao-6" class="poll-opcao" autocomplete="off" />
+    <div id="poll-opcoes-container">
+      <div id="poll-botoes-add-rm">
+        <button id="poll-rm-opcao">-</button>
+        <button id="poll-add-opcao">+</button>
+      </div>
     </div>
 
     <button id="poll-enviar">Criar</button>

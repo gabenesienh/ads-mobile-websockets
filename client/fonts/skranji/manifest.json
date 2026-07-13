@@ -1,0 +1,24 @@
+{
+  "name": "Skranji",
+  "family": "Skranji",
+  "description": "Like the call of Ricola being yodelled from the top of the Swiss Alps from a satisfied customer, Skranji soothes as it relieves all your design aches. Both primitive and exotic at the same time, Skranji evokes the thunder of Norse gods with the utility of a Swiss Army Knife! Designed by Dave 'Squid' Cohen of Neapolitan (a DBA of Font Diner, Inc.)",
+  "author": "Neapolitan",
+  "website": "",
+  "category": "Display",
+  "tags": [
+    "display",
+    "google"
+  ],
+  "languages": [
+    "en",
+    "es"
+  ],
+  "styles": [
+    "Bold",
+    "Regular"
+  ],
+  "formats": [
+    "ttf"
+  ],
+  "license": "SIL Open Font License 1.1"
+}
