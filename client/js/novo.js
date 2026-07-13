@@ -12,11 +12,17 @@ btnEnviar.onclick = async () => {
   const opcao1 = inputOpcao1.value;
   const opcao2 = inputOpcao2.value;
 
-  await fetch(`http://${SERVER_URL}/api/polls`, {
+  let res = await fetch(`http://${SERVER_URL}/api/polls`, {
     method: 'POST',
     body: JSON.stringify({ titulo, opcao1, opcao2 }),
     headers: {
       'Content-Type': 'application/json',
     },
   });
+
+  const data = await res.json();
+
+  if (res.status === 201) {
+    window.location.href = `/ver-poll?id=${data.pollId}`;
+  }
 }

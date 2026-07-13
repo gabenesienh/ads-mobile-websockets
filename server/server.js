@@ -28,7 +28,7 @@ server.get('/api/polls/:id', (req, res) => {
   if (!pollEncontrada) {
     return res
       .status(404)
-      .json({ 'error': 'Esta poll não existe.' });
+      .json({ error: 'Esta poll não existe.' });
   }
 
   return res
@@ -53,7 +53,9 @@ server.post('/api/polls', (req, res) => {
   }
 
   // Criar poll com um ID único
-  polls[uuidv4()] = {
+  const newPollId = uuidv4();
+
+  polls[newPollId] = {
     'titulo': titulo,
     'opcao1': opcao1,
     'opcao2': opcao2
@@ -61,7 +63,7 @@ server.post('/api/polls', (req, res) => {
 
   return res
     .status(201)
-    .json({});
+    .json({ pollId: newPollId });
 });
 
 // Iniciar servidor
