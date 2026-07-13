@@ -4,6 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Nova enquete - Pollenta</title>
+  <link rel="manifest" href="/manifest.json">
   <link rel="stylesheet" type="text/css" href="/css/styles.css">
 </head>
 <body>
@@ -27,4 +28,9 @@
 </body>
 <script type="module" src="/js/componentes.js"></script>
 <script type="module" src="/js/novo.js"></script>
+<script>
+  if ('serviceWorker' in navigator) {
+    navigator.serviceWorker.register('/sw.js');
+  }
+</script>
 </html>
