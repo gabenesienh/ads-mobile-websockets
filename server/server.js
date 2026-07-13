@@ -38,18 +38,35 @@ server.get('/api/polls/:id', (req, res) => {
 
 // Criar nova poll
 server.post('/api/polls', (req, res) => {
-  const { titulo, opcao1, opcao2 } = req.body;
+  const { titulo, opcoes } = req.body;
 
+  // Verificar se os campos foram informados
   if (!titulo) {
     return res
       .status(400)
       .json({ error: 'A poll não possui um título.' });
   }
 
-  if (!opcao1 || !opcao2) {
+  if (!opcoes) {
     return res
       .status(400)
       .json({ error: 'A poll precisa de pelo menos duas opções.' });
+  }
+
+  // Remover opções vazias
+  let opcoesLimpo = opcoes.filter((opcao) => opcao.trim() !== '');
+
+  // Validar número de opções
+  if (opcoesLimpo.length < 2) {
+    return res
+      .status(400)
+      .json({ error: 'A poll precisa de pelo menos duas opções.' });
+  }
+
+  if (opcoesLimpo.length > 6) {
+    return res
+      .status(400)
+      .json({ error: 'A poll pode ter ao máximo seis opções.' });
   }
 
   // Criar poll com um ID único
@@ -57,8 +74,10 @@ server.post('/api/polls', (req, res) => {
 
   polls[newPollId] = {
     'titulo': titulo,
-    'opcao1': opcao1,
-    'opcao2': opcao2
+    'opcoes': opcoesLimpo.map((opcao) => ({
+      'desc': opcao,
+      'votos': 0,
+    })),
   };
 
   return res

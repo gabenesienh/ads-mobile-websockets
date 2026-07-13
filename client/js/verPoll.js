@@ -3,8 +3,7 @@ const SERVER_PORT = 3000;
 const SERVER_URL = `${SERVER_BASEURL}:${SERVER_PORT}`;
 
 const divPollTitulo = document.getElementById('pollTitulo');
-const divPollOpcao1 = document.getElementById('pollOpcao1');
-const divPollOpcao2 = document.getElementById('pollOpcao2');
+const divPollOpcoes = document.getElementById('pollOpcoes');
 
 // Carregar dados da poll ao carregar a página
 document.addEventListener('DOMContentLoaded', async () => {
@@ -24,7 +23,10 @@ document.addEventListener('DOMContentLoaded', async () => {
     //TODO: lidar com erro
   }
 
+  // Preencher dados da poll na página
   divPollTitulo.innerHTML = data.titulo;
-  divPollOpcao1.innerHTML = data.opcao1;
-  divPollOpcao2.innerHTML = data.opcao2;
+
+  for (const opcao of data.opcoes) {
+    divPollOpcoes.innerHTML += `<div>${opcao.desc}</div>`;
+  }
 });
