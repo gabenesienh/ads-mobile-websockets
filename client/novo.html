@@ -6,7 +6,20 @@
   <title>Pollenta - Nova votação</title>
 </head>
 <body>
-  <input type="text" id="poll-pergunta" autocomplete="off" />
+  <div style="display:flex; flex-direction:column">
+    <div>
+      <label for="poll-titulo">Título:</label>
+      <input type="text" id="poll-titulo" autocomplete="off" />
+    </div>
+    <div>
+      <label for="poll-opcao-1">Opção 1:</label>
+      <input type="text" id="poll-opcao-1" autocomplete="off" />
+    </div>
+    <div>
+      <label for="poll-opcao-2">Opção 2:</label>
+      <input type="text" id="poll-opcao-2" autocomplete="off" />
+    </div>
+  </div>
   <button id="poll-enviar">Criar</button>
 </body>
 <script type="module" src="/js/novo.js"></script>

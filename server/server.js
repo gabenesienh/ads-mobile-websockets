@@ -1,15 +1,52 @@
 import express from 'express';
 import cors from 'cors';
+import { v4 as uuidv4 } from 'uuid';
 
 const SERVER_PORT = 3000;
 
 const server = express();
 
 server.use(cors());
+server.use(express.json());
+
+// Polls criadas
+let polls = {};
+
+/* -- Rotas -- */
+
+// Ver polls existentes
+server.get('/api/polls', (req, res) => {
+  return res
+    .status(200)
+    .json(polls);
+});
 
 // Criar nova poll
 server.post('/api/polls', (req, res) => {
-  res.status(200).json({});
+  const { titulo, opcao1, opcao2 } = req.body;
+
+  if (!titulo) {
+    return res
+      .status(400)
+      .json({ error: 'A poll não possui um título.' });
+  }
+
+  if (!opcao1 || !opcao2) {
+    return res
+      .status(400)
+      .json({ error: 'A poll precisa de pelo menos duas opções.' });
+  }
+
+  // Criar poll com um ID único
+  polls[uuidv4()] = {
+    'titulo': titulo,
+    'opcao1': opcao1,
+    'opcao2': opcao2
+  };
+
+  return res
+    .status(200)
+    .json({});
 });
 
 // Iniciar servidor
