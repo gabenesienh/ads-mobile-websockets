@@ -1,6 +1,6 @@
-const SERVER_BASEURL = "localhost";
+const SERVER_HOST = 'localhost';
 const SERVER_PORT = 3000;
-const SERVER_URL = `${SERVER_BASEURL}:${SERVER_PORT}`;
+const SERVER_URL = `${SERVER_HOST}:${SERVER_PORT}`;
 
 const inputTitulo = document.getElementById('poll-titulo');
 const inputOpcoes = document.getElementsByClassName('poll-opcao');

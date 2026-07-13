@@ -1,9 +1,16 @@
-const SERVER_BASEURL = "localhost";
-const SERVER_PORT = 3000;
-const SERVER_URL = `${SERVER_BASEURL}:${SERVER_PORT}`;
+import { io } from 'https://cdn.socket.io/4.8.3/socket.io.esm.min.js';
 
-const divPollTitulo = document.getElementById('pollTitulo');
-const divPollOpcoes = document.getElementById('pollOpcoes');
+const SERVER_HOST = 'localhost';
+const SERVER_PORT = 3000;
+const SERVER_URL = `${SERVER_HOST}:${SERVER_PORT}`;
+const WEBSOCKET_HOST = 'localhost';
+const WEBSOCKET_PORT = 8080;
+const WEBSOCKET_URL = `${WEBSOCKET_HOST}:${WEBSOCKET_PORT}`;
+
+const socket = io(WEBSOCKET_URL);
+
+const divPollTitulo = document.getElementById('poll-titulo');
+const divPollOpcoes = document.getElementById('poll-opcoes');
 
 // Carregar dados da poll ao carregar a página
 document.addEventListener('DOMContentLoaded', async () => {
@@ -26,7 +33,15 @@ document.addEventListener('DOMContentLoaded', async () => {
   // Preencher dados da poll na página
   divPollTitulo.innerHTML = data.titulo;
 
-  for (const opcao of data.opcoes) {
-    divPollOpcoes.innerHTML += `<div>${opcao.desc}</div>`;
+  for (let i = 0; i < data.opcoes.length; i++) {
+    divPollOpcoes.innerHTML +=
+    `
+      <div>
+        <label for="poll-opcao-${i}">
+          ${data.opcoes[i].desc}
+        </label>
+        <button id="poll-opcao-${i}">Votar</button>
+      </div>
+    `;
   }
 });
