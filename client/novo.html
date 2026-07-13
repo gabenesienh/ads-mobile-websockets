@@ -4,9 +4,13 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Nova enquete - Pollenta</title>
+  <link rel="stylesheet" type="text/css" href="/css/styles.css">
 </head>
 <body>
-  <div style="display:flex; flex-direction:column">
+  <div id="_NavTopo"></div>
+  <main>
+    <h1>Nova enquete</h1>
+
     <div>
       <label for="poll-titulo">Título:</label>
       <input type="text" id="poll-titulo" autocomplete="off" />
@@ -35,8 +39,10 @@
       <label for="poll-opcao-6">Opção 6:</label>
       <input type="text" id="poll-opcao-6" class="poll-opcao" autocomplete="off" />
     </div>
-  </div>
-  <button id="poll-enviar">Criar</button>
+
+    <button id="poll-enviar">Criar</button>
+  </main>
 </body>
+<script type="module" src="/js/componentes.js"></script>
 <script type="module" src="/js/novo.js"></script>
 </html>

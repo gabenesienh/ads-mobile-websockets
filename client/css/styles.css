@@ -1,0 +1,77 @@
+body {
+  align-items: center;
+  background-color: #ffffee;
+  display: flex;
+  flex-direction: column;
+  margin: 0;
+  min-width: 100vw;
+}
+
+main {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  padding: 12px;
+  width: 100%;
+}
+
+.nav-topo-container {
+  width: 100%;
+  margin: 6px 12px;
+}
+
+.nav-topo-logo {
+  height: 100%;
+  min-height: 48px;
+  max-height: 80px;
+}
+
+#_NavTopo {
+  background-color: #eecdab;
+  display: flex;
+  max-height: 80px;
+  min-height: 80px;
+  min-width: 100%;
+}
+
+/* sm */
+@media (min-width: 576px) {
+  main {
+    width: 90%;
+  }
+}
+
+/* md */
+@media (min-width: 768px) {
+  main {
+    width: 80%;
+  }
+
+  .nav-topo-container {
+    margin-left: 12.5%;
+    margin-right: 12.%;
+  }
+}
+
+/* lg */
+@media (min-width: 992px) {
+  main {
+    width: 70%;
+  }
+
+  .nav-topo-container {
+    margin-left: 20%;
+    margin-right: 20%;
+  }
+}
+
+/* xl */
+@media (min-width: 1200px) {
+
+}
+
+/* xxl */
+@media (min-width: 1400px) {
+
+}
