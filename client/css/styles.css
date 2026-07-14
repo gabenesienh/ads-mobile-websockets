@@ -108,6 +108,18 @@ main {
   font-weight: bold;
 }
 
+.poll-votar-container {
+  align-items: center;
+  column-gap: 30px;
+  display: flex;
+  justify-content: space-between;
+}
+
+#poll-view-opcoes {
+  display: flex;
+  flex-direction: column;
+}
+
 /* -- Componentes -- */
 
 #_NavTopo {

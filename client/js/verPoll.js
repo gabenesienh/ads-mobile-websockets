@@ -1,5 +1,7 @@
 import { io } from 'https://cdn.socket.io/4.8.3/socket.io.esm.min.js';
 
+import { CardOpcaoVotar } from '/components/CardOpcaoVotar.js';
+
 const SERVER_HOST = 'localhost';
 const SERVER_PORT = 3000;
 const SERVER_URL = `${SERVER_HOST}:${SERVER_PORT}`;
@@ -9,8 +11,8 @@ const WEBSOCKET_URL = `${WEBSOCKET_HOST}:${WEBSOCKET_PORT}`;
 
 const socket = io(WEBSOCKET_URL);
 
-const divPollTitulo = document.getElementById('poll-titulo');
-const divPollOpcoes = document.getElementById('poll-opcoes');
+const divPollViewTitulo = document.getElementById('poll-view-titulo');
+const divPollViewOpcoes = document.getElementById('poll-view-opcoes');
 
 // Carregar dados da poll ao carregar a página
 document.addEventListener('DOMContentLoaded', async () => {
@@ -32,24 +34,21 @@ document.addEventListener('DOMContentLoaded', async () => {
   }
 
   // Preencher dados da poll na página
-  divPollTitulo.innerHTML = data.titulo;
+  divPollViewTitulo.innerHTML = data.titulo;
 
   for (let i = 0; i < data.opcoes.length; i++) {
     const novaOpcao = document.createElement('div');
 
     // Sim, isso não é nem um pouco seguro, mas eu já virei a noite fazendo essa
     // porcaria funcionar :^)))))))))
-    divPollOpcoes.insertAdjacentHTML('beforeend', `
-      <div>
-        <label for="poll-votar-${i}">
-          ${data.opcoes[i].desc}
-        </label>
-        <button id="poll-votar-${i}">Votar</button>
-        <div id="poll-votos-${i}">
-          ${data.opcoes[i].votos}
-        </div>
-      </div>
-    `)
+    divPollViewOpcoes.insertAdjacentHTML(
+      'beforeend',
+      CardOpcaoVotar({
+        opcaoId: i,
+        desc: data.opcoes[i].desc,
+        votos: data.opcoes[i].votos
+      })
+    );
 
     // Registrar voto ao clicar o botão
     const btnVotar = document.getElementById(`poll-votar-${i}`);
